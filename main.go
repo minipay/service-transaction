@@ -42,6 +42,8 @@ func main() {
 		}
 	}()
 	dbConn, err := sql.Open("mysql", viper.GetString("database.mysql.user")+":"+viper.GetString("database.mysql.password")+"@tcp("+viper.GetString("database.mysql.host")+":"+viper.GetString("database.mysql.port")+")/"+viper.GetString("database.mysql.dbname")+"?charset=utf8&parseTime=True&loc=Local")
+	dbConn.SetMaxOpenConns(100)
+	dbConn.SetMaxIdleConns(100)
 	if err != nil && viper.GetBool("debug") {
 		log.Println(err)
 	}
@@ -66,5 +68,11 @@ func main() {
 	tu := transactionUsecase.NewTransactionUsecase(tr, timeoutContext)
 	transactionHttpDeliver.NewTransactionHandler(router, tu)
 
-	http.ListenAndServe(viper.GetString("server.host")+":"+viper.GetString("server.port"), n)
+	s := &http.Server{
+		ReadTimeout:  1 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		Addr:         viper.GetString("server.host") + ":" + viper.GetString("server.port"),
+		Handler:      n,
+	}
+	s.ListenAndServe()
 }
