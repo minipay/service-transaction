@@ -11,7 +11,7 @@
     },
     "database": {
         "mysql":{
-            "dbname": "transaction",
+            "dbname": "pay_transaction",
             "user": "user",
             "password": "password",
             "host": "mysql",
