@@ -31,7 +31,8 @@ $ docker run -v {{ migration dir }}:/migrations --network host migrate/migrate
 ```
 example : </br>
 ```bash
-$ docker run -v /Users/gavinda/Documents/Project/mini-payment/service-transaction/migrations:/migrations --network host migrate/migrate -path=/migrations/ -database "mysql://user:password@tcp(localhost:3307)/pay_transaction" up
+$ docker run -v /Users/gavinda/Documents/Project/mini-payment/service-transaction/migrations:/migrations --network host migrate/migrate 
+-path=/migrations/ -database "mysql://user:password@tcp(localhost:3307)/pay_transaction" up
 ```
 
 
