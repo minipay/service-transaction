@@ -14,8 +14,8 @@
             "dbname": "pay_transaction",
             "user": "user",
             "password": "password",
-            "host": "mysql",
-            "port": "3307"
+            "host": "transaction_mysql",
+            "port": ""
         }
     }
 }

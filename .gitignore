@@ -16,6 +16,7 @@
 /vendor/*
 !/vendor/vendor.json
 /Godeps/
+.DS_Store
 
 config.json
 *.log

@@ -14,13 +14,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you how to get a development env running
 1. Clone this project `git clone https://github.com/minipay/service-transaction.git` outside $GOPATH (for version >= 1.11) or inside $GOPATH/src (for version < 1.11)
-2. Copy and rename `sample.config.json` to `config.json` 
+2. Run `cd service-transaction`. Copy and rename `sample.config.json` to `config.json` 
 3. **(for version under 1.11)** After cloning it into your GOPATH, you need to run this to install all dependencies :
 `go mod tidy`
 4. Setting up your host, port, and database configuration in `config.json`
 5. If the `debug` is true, it will print all log including your error
-6. Run the database migration in your terminal/cmd using [migrate](https://github.com/golang-migrate/migrate)
-7. Run `go run main.go` or just `docker-compose up` with default config
+6. Make sure [migration-tools](https://github.com/golang-migrate/migrate) is installed
+7. Running :
+    a. Without docker
+        - Make sure mysql already installed in your machine. Adjust your `config`. Run `go run main.go`
+    b. With docker
+        - Dont change anything in `config.json`. Leave it default
+        - Run `docker build . -t service-transaction:1.0` to build the image
+        - Run `docker-compose up` and wait. If no error appear, it means your app is ready
 
 ## Built With
 

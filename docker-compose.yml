@@ -8,6 +8,7 @@ services:
       - 5050:5050
     depends_on:
       - mysql
+    restart: always
   
   mysql:
     image: mysql:5.7

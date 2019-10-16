@@ -41,7 +41,13 @@ func main() {
 			panic(r)
 		}
 	}()
-	dbConn, err := sql.Open("mysql", viper.GetString("database.mysql.user")+":"+viper.GetString("database.mysql.password")+"@tcp("+viper.GetString("database.mysql.host")+":"+viper.GetString("database.mysql.port")+")/"+viper.GetString("database.mysql.dbname")+"?charset=utf8&parseTime=True&loc=Local")
+	connURL := ""
+	if viper.GetString("database.mysql.port") == "" {
+		connURL = viper.GetString("database.mysql.user") + ":" + viper.GetString("database.mysql.password") + "@tcp(" + viper.GetString("database.mysql.host") + ")/" + viper.GetString("database.mysql.dbname") + "?charset=utf8&parseTime=True&loc=Local"
+	} else {
+		connURL = viper.GetString("database.mysql.user") + ":" + viper.GetString("database.mysql.password") + "@tcp(" + viper.GetString("database.mysql.host") + ":" + viper.GetString("database.mysql.port") + ")/" + viper.GetString("database.mysql.dbname") + "?charset=utf8&parseTime=True&loc=Local"
+	}
+	dbConn, err := sql.Open("mysql", connURL)
 	dbConn.SetMaxOpenConns(100)
 	dbConn.SetMaxIdleConns(100)
 	if err != nil && viper.GetBool("debug") {
@@ -74,5 +80,8 @@ func main() {
 		Addr:         viper.GetString("server.host") + ":" + viper.GetString("server.port"),
 		Handler:      n,
 	}
-	s.ListenAndServe()
+	err = s.ListenAndServe()
+	if err != nil {
+		panic(err)
+	}
 }
