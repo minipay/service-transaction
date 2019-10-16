@@ -19,12 +19,11 @@ A step by step series of examples that tell you how to get a development env run
 `go mod tidy`
 4. Setting up your host, port, and database configuration in `config.json`
 5. If the `debug` is true, it will print all log including your error
-6. Make sure [migration-tools](https://github.com/golang-migrate/migrate) is installed
-7. Running without docker : make sure mysql already installed in your machine. Adjust your `config`. Run `go run main.go`
-8. Running With docker : </br>
+6. Running without docker : make sure mysql already installed in your machine. Adjust your `config`. Run `go run main.go`
+7. Running With docker : </br>
 - Dont change anything in `config.json`. Leave it default </br>
 - Run `docker-compose up` and wait. If no error appear, it means your app is ready </br>
-9. For migration :
+8. For migration :
 ```bash
 $ docker run -v {{ migration dir }}:/migrations --network host migrate/migrate
     -path=/migrations/ -database postgres://localhost:5432/database up 2
