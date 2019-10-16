@@ -1,0 +1,21 @@
+{
+    "debug": false,
+    "server":{
+        "host": "0.0.0.0",
+        "port": 5050,
+        "timeout": 5
+    },
+    "log":{
+        "path":"",
+        "filename":"service-transaction-error.log"
+    },
+    "database": {
+        "mysql":{
+            "dbname": "pay_transaction",
+            "user": "user",
+            "password": "password",
+            "host": "transaction_mysql",
+            "port": ""
+        }
+    }
+}

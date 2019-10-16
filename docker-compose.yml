@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    image: service-transaction:1.0
+    container_name: transaction_api
+    ports:
+      - 5050:5050
+    depends_on:
+      - mysql
+    restart: always
+  
+  mysql:
+    image: mysql:5.7
+    container_name: transaction_mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pay_transaction
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./db:/var/lib/mysql
+    
