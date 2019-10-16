@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    image: service-transaction:1.0
+    build: .
     container_name: transaction_api
     ports:
       - 5050:5050
