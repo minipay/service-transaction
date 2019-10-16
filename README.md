@@ -24,6 +24,16 @@ A step by step series of examples that tell you how to get a development env run
 8. Running With docker : </br>
 - Dont change anything in `config.json`. Leave it default </br>
 - Run `docker-compose up` and wait. If no error appear, it means your app is ready </br>
+9. For migration :
+```bash
+$ docker run -v {{ migration dir }}:/migrations --network host migrate/migrate
+    -path=/migrations/ -database postgres://localhost:5432/database up 2
+```
+example : </br>
+```bash
+$ docker run -v /Users/gavinda/Documents/Project/mini-payment/service-transaction/migrations:/migrations --network host migrate/migrate -path=/migrations/ -database "mysql://user:password@tcp(localhost:3307)/pay_transaction" up
+```
+
 
 ## Built With
 
