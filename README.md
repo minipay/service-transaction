@@ -23,7 +23,6 @@ A step by step series of examples that tell you how to get a development env run
 7. Running without docker : make sure mysql already installed in your machine. Adjust your `config`. Run `go run main.go`
 8. Running With docker : </br>
 - Dont change anything in `config.json`. Leave it default </br>
-- Run `docker build . -t service-transaction:1.0` to build the image </br>
 - Run `docker-compose up` and wait. If no error appear, it means your app is ready </br>
 
 ## Built With
