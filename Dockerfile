@@ -6,5 +6,6 @@ RUN apk add tzdata && \
         apk del tzdata
 COPY . /home/app/
 WORKDIR /home/app/
+RUN cp sample.config.json config.json
 CMD go run main.go
 EXPOSE 5050
